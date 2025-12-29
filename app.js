@@ -1,4 +1,4 @@
-/* start of edit 1 */
+/* e1.1, s */
 const game = {
   // setup
   originalPlayers: [],
@@ -27,7 +27,7 @@ const game = {
   revealIndex: 0,
   missionVoteIndex: 0
 };
-/* end of edit 1 */
+/* e1.1, e */
 
 
 const app = document.getElementById("app");
@@ -76,8 +76,34 @@ function startGame() {
   game.useMordred = document.getElementById("mordred").checked;
 
   game.metadata.push(`Game start: players ${names.join(", ")}`);
-  assignRoles();
+  renderSetupSummary();
 }
+
+
+function renderSetupSummary() {
+  const n = game.originalPlayers.length;
+  const evil = {5:2,6:2,7:3,8:3,9:3,10:4}[n];
+  const good = n - evil;
+
+  render(`
+    <h2>Game Setup Summary</h2>
+    <div class="card">
+      Players: ${n}<br>
+      Good: ${good}<br>
+      Evil: ${evil}<br>
+      Merlin/Assassin: ${game.useMerlin ? "Yes" : "No"}<br>
+      Percival/Morgana: ${game.usePercival ? "Yes" : "No"}<br>
+      Oberon: ${game.useOberon ? "Yes" : "No"}<br>
+      Mordred: ${game.useMordred ? "Yes" : "No"}<br>
+      Missions: 5<br>
+      4th-Mission Double-Fail: ${n >= 7 ? "Yes" : "No"}
+    </div>
+    <button onclick="assignRoles()">Continue</button>
+  `);
+}
+
+
+
 
 /* ---------- ROLE ASSIGNMENT ---------- */
 
