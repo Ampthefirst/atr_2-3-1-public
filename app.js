@@ -1,3 +1,35 @@
+/* start of edit 1 */
+const game = {
+  // setup
+  originalPlayers: [],
+  roles: {},
+  leaderIndex: null,
+
+  // toggles
+  useMerlin: true,
+  usePercival: true,
+  useOberon: false,
+  useMordred: false,
+
+  // game state
+  roundNumber: 1,
+  failedProposals: 0,
+  maxFailedProposals: 5,
+  currentLeader: null,
+  selectedTeam: [],
+  missionVotes: [],
+  missionResults: [],
+  pastMissions: [],
+  metadata: [],
+  winningTeam: null,
+
+  // UI flow helpers
+  revealIndex: 0,
+  missionVoteIndex: 0
+};
+/* end of edit 1 */
+
+
 const app = document.getElementById("app");
 
 function render(html) {
